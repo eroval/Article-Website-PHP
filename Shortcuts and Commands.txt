@@ -1,0 +1,33 @@
+_________________
+WSL-LINUX
+-----------------
+for the 'sail up' shortcut:
+'nano ~/.bashrc' in WSL and create alias:
+       |alias sail='bash venod/bin/sail'|
+then save and run '. ~/.bashrc'.
+
+_________________
+laravel:
+-----------------
+curl -s https://laravel.build/ProjectName
+sail up
+sail down
+sail down --rmi all [remove images]
+sail down -v        [remove volumes]
+sail artisan config:cache
+sail artisan migrate:<option>
+.................
+
+_________________
+node/sass:
+-----------------
+npm install
+npm run dev 
+sass --watch resources/sass:resources/css
+
+_________________
+package.json
+-----------------
+'npm run mysass' shortcut:
+write ["mysass": "sass --watch resources/sass:resources/css"]
+in the scripts section and just run it like usual. 

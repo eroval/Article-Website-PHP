@@ -6,6 +6,7 @@
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
+        "mysass": "sass --watch resources/sass:resources/css",
         "prod": "npm run production",
         "production": "mix --production"
     },
@@ -22,5 +23,9 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "bootstrap-vue": "^2.21.2",
+        "node-sass": "^6.0.1"
     }
 }
