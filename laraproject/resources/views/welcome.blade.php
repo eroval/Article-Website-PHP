@@ -23,13 +23,26 @@
             }
         </style>
     </head>
-    <body class="antialiased" style="width: 80%; margin: auto;">
+    <body class="antialiased" style="height: 100%; width: 80%; margin: auto;">
         <div class="content" >
             <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
                 @include('headnav')
-
+                @include('myline')
             </div>
         </div>
+
+        @section('mycontent')
+            <div class="my_content" style="display: flex; width: 100%; height: 80%;">
+                <div class="container-fluid">
+                    <h1>cool</h1>
+                    <h1>cool</h1>
+                    <h1>cool</h1>
+                    <h1>cool</h1>
+                    <h1>cool</h1>
+                </div>
+            </div>
+        @endsection
+        @yield('mycontent')
 
         <script src="{{ asset('js/app.js') }}"></script>
     </body>

@@ -1,3 +1,4 @@
+<div class="container-fluid">
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <style>
@@ -10,23 +11,29 @@
                 }
 
                 .user_reg a{
+                    background-color: black;
                     color: white;
                     text-decoration: none;
                     font-size: 15px;
                     display: inline-block;
                     padding: 0px 10px;
                     margin-right:10px;
+                    border-radius: 8px;
+                    transition: 250ms;
                 }
 
-                .user_reg a:link{
-                    background-color: black;
-                    border-radius: 8px;
+                .user_reg a:hover{
+                    background-color: rgb(255, 153, 0);
+                    color: black;
+                    transition: 250ms;
                 }
+
 
                 .logo{
                     font-family: 'Playfair Display', serif;
                     position: relative;
                     top: -10px;
+                    border-radius: 10px;
                 }
 
             </style>
@@ -44,7 +51,7 @@
                     @endauth
                 </div>
                 <div class="logo">
-                    <h1>Old Towner</h1>
+                    <h1><a href="#" style="text-decoration: none; color:black">Old Towner</a></h1>
                 </div>
                 <div class="nav-menu">
                         <a href="#">Newsfeed </a>
@@ -52,6 +59,6 @@
                         <a href="#">Search </a>
                 </div>
             </div>
-            @include('myline')
         </div>
     @endif
+</div>
