@@ -48,7 +48,8 @@
                 <div class="container-fluid">  
                     <div class="card-body">
                         {{-- <form name="create-article" id='create-article' method="POST" action="{{ url(@csrf) }}"> --}}
-                        <form name="create-article" id='create-article' method="POST">
+                        <form name="create-article" id='create-article' method="POST" action="{{ url('store-article') }}">
+                            @csrf
                             <div class="form-group">
                                 <label for="exampleHeadline">Headline</label>
                                 <input type="text" id="headline" name="headline" class="form-control" required="">
@@ -56,7 +57,10 @@
                             <div class="form-group">
                                 <label for="exampleContent">Content</label>
                                 <textarea name="content" style="height: 650px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
-                            </div>                       
+                            </div>  
+                            <div style="display: flex; justify-content: center;">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+                            </div>                     
                         </form>
                     </div>
                 </div>
