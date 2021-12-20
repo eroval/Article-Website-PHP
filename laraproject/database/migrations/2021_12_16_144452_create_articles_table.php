@@ -20,7 +20,6 @@ class CreateArticlesTable extends Migration
             $table->text('content');
             $table->timestamps();
 
-            $table->index('id');
             $table->index('author_id');           
         });
     }

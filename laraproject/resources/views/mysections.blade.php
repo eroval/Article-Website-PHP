@@ -29,7 +29,7 @@
         @endsection
 
         @section('mycontent')
-            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+            <div class="my_content" style="display: flex; min-height:800px width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">
                     @section('hbtn')
                     <div class="d-flex flex-row-reverse">
@@ -69,7 +69,7 @@
 
 
         @section('myfooter')
-        <p style="margin-top: 15px; text-align:center;">Copyright: The dopest dude</p>
+        <p style="margin-top: 15px; text-align:center; padding-bottom:15px;">Copyright: The Amazing (Just) Man</p>
         @endsection
 
         @section('scripts')
