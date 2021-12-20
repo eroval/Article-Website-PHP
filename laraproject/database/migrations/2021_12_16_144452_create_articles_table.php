@@ -15,9 +15,13 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('author_id')->primary();
-            
+            $table->uuid('author_id');
+            $table->string('headline');
+            $table->text('content');
             $table->timestamps();
+
+            $table->index('id');
+            $table->index('author_id');           
         });
     }
 

@@ -6,13 +6,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Newsfeed</title>
+        <title>Create Article</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         @yield('mystyles')
     </head>
     <body class="antialiased" style="height: 100%; width: 80%; margin: auto;">
         @yield('header')
-        @yield('mycontent')
+        @yield('article-creator')
         @yield('myfooter')
 
         <script src="{{ asset('js/app.js') }}"></script>
