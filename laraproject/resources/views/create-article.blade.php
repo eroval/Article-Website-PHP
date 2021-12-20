@@ -9,6 +9,11 @@
         <title>Create Article</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <style>
+            html{
+                height: 100%;
+            }
+        </style>
         @yield('mystyles')
     </head>
     <body class="antialiased" style="height: 100%; width: 80%; margin: auto;">

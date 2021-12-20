@@ -34,7 +34,7 @@
                     @section('hbtn')
                     <div class="d-flex flex-row-reverse">
                         <div class="hand-button"  style="margin-top: 15px; ">
-                            <a href="{{ url('/create') }}" style="color: black; text-decoration: none;font-size: 24px; padding: 4px 10px; border: 3px dashed rgba(0,0,0,0.45);">Create</a>
+                            <a href="{{ url('/create-article') }}" style="color: black; text-decoration: none;font-size: 24px; padding: 4px 10px; border: 3px dashed rgba(0,0,0,0.45);">Create</a>
                         </div>
                     </div>
                     @endsection
@@ -44,18 +44,19 @@
         @endsection
         
         @section('article-creator')
-            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+            <div class="my_content" style="min-height: 800px; display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">  
-                    @if(session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif
                     <div class="card-body">
-                        <form name="create-article" id='create-article' method="POST" action="{{ url(@csrf) }}">
+                        {{-- <form name="create-article" id='create-article' method="POST" action="{{ url(@csrf) }}"> --}}
+                        <form name="create-article" id='create-article' method="POST">
                             <div class="form-group">
-                                <label for="">    
-                            </div>                        
+                                <label for="exampleHeadline">Headline</label>
+                                <input type="text" id="headline" name="headline" class="form-control" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleContent">Content</label>
+                                <textarea name="content" style="height: 650px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
+                            </div>                       
                         </form>
                     </div>
                 </div>

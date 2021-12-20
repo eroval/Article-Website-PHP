@@ -42,7 +42,13 @@
             <div class="d-flex justify-content-between">
                 <div class='user_reg'>
                     @auth
-                        <a href="{{ url('/home') }}" >Home</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Log out</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                     @else
                         <a href="{{ route('login') }}">Log in</a>
                         @if (Route::has('register'))
@@ -51,7 +57,7 @@
                     @endauth
                 </div>
                 <div class="logo">
-                    <h1><a href="#" style="text-decoration: none; color:black">Old Towner</a></h1>
+                    <h1><a href="{{ url('/') }}" style="text-decoration: none; color:black">Old Towner</a></h1>
                 </div>
                 <div class="nav-menu">
                         <a href="#">Newsfeed </a>
