@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Models\Article;
-use Illuminate\Support\Facades\DB;
-
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +18,10 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     $articles = Article::paginate(5);
+    foreach($articles as $article){
+        $user = User::findOrFail($article['author_id']);
+        $article['user']=$user['name'];
+    }
     return view('welcome', ['articles'=>$articles]);
 });
 

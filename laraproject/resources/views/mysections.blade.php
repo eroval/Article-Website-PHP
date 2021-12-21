@@ -43,11 +43,14 @@
                     @endsection
                     <div class="d-flex justify-content-between">
                         @if ($articles?? '')
-                            <div class="d-flex flex-column">
+                            <div class="d-flex flex-fill flex-column">
                                 @foreach($articles as $element)
-                                    <div class="card" style="margin-left: 50px; margin-top: 30px; padding:5px 200px 5px 40px; border: 2px solid rgba(0,0,0,45);">
+                                    <!-- style="margin-left: 50px; margin-top: 30px; padding:5px 200px 5px 40px; border: 2px solid rgba(0,0,0,45);" -->
+                                    <div class="card" style="margin-left: 50px; margin-top: 30px; border: 1px solid rgba(0,0,0,45);">
+                                        <div class="card-header">{{$element['created_at']}}</div>
                                         <div class="card-body">
                                             <div class="card-title">{{$element['headline']}}</div>
+                                            <div class="card-text">Created by: {{$element['user']}}</div>
                                             <a href="{{url('/article/' . $element->id )}}" class="card-link" style="text-decoration:none; color: rgb(255, 153, 0);">View</a>   
                                         </div>
                                     </div>
