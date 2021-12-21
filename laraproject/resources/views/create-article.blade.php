@@ -17,16 +17,22 @@
         @yield('mystyles')
     </head>
     <body class="antialiased" style="height: 100%; width: 80%; margin: auto;">
-        @yield('header')
-        
-        @if(session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
-        @yield('article-creator')
-        @yield('myfooter')
+        @if (Auth::user())
+            @yield('header')
+            
+            @if(session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+            @endif
+            @yield('article-creator')
+            @yield('myfooter')
 
-        <script src="{{ asset('js/app.js') }}"></script>
+            <script src="{{ asset('js/app.js') }}"></script>
+        @else
+            @yield('header')
+            @yield('article-creator-error')
+            @yield('myfooter')
+        @endif
     </body>
 </html>

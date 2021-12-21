@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Models\Article;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +18,13 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $articles = Article::paginate(5);
+    return view('welcome', ['articles'=>$articles]);
+});
+
+Route::get('/article/{id}', function($id) {
+    $article = Article::findOrFail($id);
+    return view('article', ['article'=>$article]);
 });
 
 
