@@ -9,6 +9,9 @@
         <title>Newsfeed</title>
 
         @yield('mystyles')
+        <!-- Special Styling for the buttons -->
+        @include('link-style')
+
     </head>
     <body class="antialiased" style="height: 100%; width: 80%; margin: auto;">
         @yield('header')

@@ -6,6 +6,7 @@ use App\Models\Article;
 use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class ArticleController extends Controller
 {
@@ -17,18 +18,26 @@ class ArticleController extends Controller
         Auth::user();
         $article = new Article();
         $article->author_id=Auth::user()->id;
+        $article->user=Auth::user()->name;
         $article->headline = $req->headline;
         $article->content = $req->content;
         $article->save();
         return redirect('create-article')->with('status','successfully added');
+    }
 
-        //     $table->uuid('id')->primary();
-        //     $table->uuid('author_id');
-        //     $table->string('headline');
-        //     $table->text('content');
-        //     $table->timestamps();
+    public function loadStart(){
+            $articles = Article::paginate(5);
+            foreach($articles as $article){
+                $user = User::findOrFail($article['author_id']);
+                $article['user']=$user['name'];
+            }
+            return view('welcome', ['articles'=>$articles]);
+    }
 
-        //     $table->index('id');
-        //     $table->index('author_id');
+    public function loadPage($id){
+        $article = Article::findOrFail($id);
+        $user = User::findOrFail($article['author_id']);
+        $article['user']=$user['name'];
+        return view('article', ['article'=>$article]);
     }
 }
