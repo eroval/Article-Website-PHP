@@ -26,11 +26,7 @@ class ArticleController extends Controller
     }
 
     public function loadStart(){
-            $articles = Article::paginate(5);
-            foreach($articles as $article){
-                $user = User::findOrFail($article['author_id']);
-                $article['user']=$user['name'];
-            }
+            $articles = Article::orderBy('created_at', 'DESC')->paginate(5);
             return view('welcome', ['articles'=>$articles]);
     }
 
@@ -38,6 +34,9 @@ class ArticleController extends Controller
         $article = Article::findOrFail($id);
         $user = User::findOrFail($article['author_id']);
         $article['user']=$user['name'];
+        // error_log(str_replace('\r\n', '<br>', $article['content']));
+        $article['content'] = str_replace('\r\n', '<br>', $article['content']);
+        error_log($article);
         return view('article', ['article'=>$article]);
     }
 }

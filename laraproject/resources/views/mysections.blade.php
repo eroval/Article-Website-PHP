@@ -108,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleContent">Content</label>
-                                <textarea name="content" style="height: 650px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
+                                <textarea name="content" style="height: 750px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
                             </div>  
                             <div style="display: flex; justify-content: center;">
                             <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
@@ -133,14 +133,18 @@
         @if ($article?? '')
         @section('article-page')
         <div class="my_content" style="display: flex; min-height:1000px; min-width:550px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
-                <div class="container-fluid">
-                    <h2>{{$article['headline']}}</h2><br>
-                    <p>{{$article['content']}}</p><br>
+            <div class="container-fluid">
+                <div class="card-body">
+                    <h2 class="card-title">{{$article['headline']}}</h2>
+                    @include('myline')
+                    <br>
+                    <!-- <p class="card-text">{{$article['content']}}</p><br> -->
+                    {{$article['content']}}
                     <p>{{$article['created_at']}}</p><br>
                     <p>{{$article['user']}}</p>
-                    </div>
                 </div>
             </div>
+        </div>
         @endsection
         @endif
 
