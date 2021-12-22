@@ -98,9 +98,11 @@
                             @yield('hbtn')
                         </div>
                         
-                        <div class="d-flex justify-content-center" style="margin-top: 30px;">
-                            {{ $articles->links('pagination::bootstrap-4') }}
-                        </div>
+                        @if ($articles?? '')
+                            <div class="d-flex justify-content-center" style="margin-top: 30px;">
+                                {{ $articles->links('pagination::bootstrap-4') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
