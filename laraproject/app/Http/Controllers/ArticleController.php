@@ -32,11 +32,6 @@ class ArticleController extends Controller
 
     public function loadPage($id){
         $article = Article::findOrFail($id);
-        $user = User::findOrFail($article['author_id']);
-        $article['user']=$user['name'];
-        // error_log(str_replace('\r\n', '<br>', $article['content']));
-        $article['content'] = str_replace('\r\n', '<br>', $article['content']);
-        error_log($article);
         return view('article', ['article'=>$article]);
     }
 }
