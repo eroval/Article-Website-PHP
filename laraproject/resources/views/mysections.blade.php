@@ -107,7 +107,7 @@
                 @if ($articles?? '')
                         <!-- <div class="d-flex align-items-end justify-content-center"> -->
                             <div class="d-flex justify-content-center" >
-                        <div style="position:absolute;  bottom:0;">
+                        <div style="position:absolute;  bottom:0; margin-bottom: 20px;">
                                 {{ $articles->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
@@ -171,9 +171,9 @@
                     <br>
                     <p>Created by: {{$article['user']}}</p>
                     @include('mylinebeginshort')
-                    <p>Updated: {{$article['updated_at']}}</p>
+                    <p style="margin-top:5px;">Updated: {{$article['updated_at']}}</p>
                     @include('mylinebeginshort')
-                    <p>Created: {{$article['created_at']}}</p>
+                    <p style="margin-top:5px;">Created: {{$article['created_at']}}</p>
                     @include('mylinebeginshort')
 
                 </div>
