@@ -33,6 +33,8 @@
             }
 
             body {
+                min-width:600px; 
+                min-height: 1270px;
                 font-family: 'Nunito', sans-serif;
             }
         </style>
@@ -50,8 +52,8 @@
 
 
         @section('mycontent')
-            <div class="my_content" style="display: flex; min-height:1000px; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
-                <div class="container-fluid" style='margin-top: 20px;'>
+            <div class="my_content" style="position: relative; display: flex; width: 100%; flex-direction:column; height: 80%; font-family: 'Cormorant Garamond'; ">
+                <div class="container-fluid" style='display: flex; margin-top: 20px;'>
                     <div class="card-body">
                         @section('hbtn')
                             @if (Auth::check())
@@ -77,7 +79,7 @@
                                             <h5 class="card-header">{{$element['headline']}}</h5>
                                             <div class="card-body">
                                                 <div class="card-title">Created by: {{$element['user']}}</div>
-                                                <div class="card-subtitle mb-2 text-muted">{{$element['created_at']}}</div>
+                                                <div class="card-subtitle mb-2 text-muted">Created: {{$element['created_at']}}</div>
                                                 <div class="d-flex flex-row">
                                                     <div class="my_link">
                                                         <a href="{{url('/article/' . $element->id )}}" class="card-link">View</a>
@@ -99,20 +101,23 @@
                             @yield('vertical-line')
                             @yield('hbtn')
                         </div>
-                        
-                        @if ($articles?? '')
-                            <div class="d-flex justify-content-center" style="margin-top: 30px;">
-                                {{ $articles->links('pagination::bootstrap-4') }}
-                            </div>
-                        @endif
                     </div>
                 </div>
+                        
+                @if ($articles?? '')
+                        <!-- <div class="d-flex align-items-end justify-content-center"> -->
+                            <div class="d-flex justify-content-center" >
+                        <div style="position:absolute;  bottom:0;">
+                                {{ $articles->links('pagination::bootstrap-4') }}
+                            </div>
+                        </div>
+                @endif
             </div>
         @endsection
         
 
         @section('article-creator')
-            <div class="my_content" style="min-height: 1000px; display: flex; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">  
                     <div class="card-body">
                         {{-- <form name="create-article" id='create-article' method="POST" action="{{ url(@csrf) }}"> --}}
@@ -131,7 +136,7 @@
                                 <textarea name="content" style="height: 750px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
                             </div>  
                             <div style="display: flex; justify-content: center;">
-                            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 30px;">Submit</button>
                             </div>                     
                         </form>
                     </div>
@@ -141,7 +146,7 @@
         
 
         @section('article-creator-error')
-            <div class="my_content" style="min-height: 1000px; min-width:600px; display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid" style="display:flex; justify-content: center;" > 
                     <div class="d-flex align-self-center">
                         <h1>Cannot create article without signing in.</h1>
@@ -153,20 +158,22 @@
 
         @if ($article?? '')
         @section('article-page')
-        <div class="my_content" style="display: flex; min-height:1000px; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+        <div class="my_content" style="display: flex; height: 80%; font-family: 'Cormorant Garamond'; ">
             <div class="container-fluid">
                 <div class="card-body">
                     <h2 class="card-title">{{$article['headline']}}</h2>
                     @include('mylinebegin')
                     <br>
                     <div>
-                        <textarea readonly name="content" style="background-color: #fcfcfc; height: 750px; overflow-y: auto; resize:none;  width:100%; border:none; outline:none; " >{{$article['content']}}</textarea>
+                        <textarea readonly name="content" style="background-color: #fcfcfc; height: 720px; overflow-y: auto; resize:none;  width:100%; border:none; outline:none; " >{{$article['content']}}</textarea>
                     </div>
                     @include('mylinebegin')
                     <br>
                     <p>Created by: {{$article['user']}}</p>
                     @include('mylinebeginshort')
-                    <p>Date: {{$article['created_at']}}</p>
+                    <p>Updated: {{$article['updated_at']}}</p>
+                    @include('mylinebeginshort')
+                    <p>Created: {{$article['created_at']}}</p>
                     @include('mylinebeginshort')
 
                 </div>
@@ -178,7 +185,7 @@
         
         @if ($article?? '')
         @section('article-editor')
-            <div class="my_content" style="min-height: 1000px; display: flex; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">  
                     <div class="card-body">
                         <?php $myurl="/update-article/" . $article->id . ""; 
