@@ -17,17 +17,25 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-// Route::get('/article/{id}', function($id) {
-//     $article = Article::findOrFail($id);
-//     return view('article', ['article'=>$article]);
-// });
-
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/create-article', [ArticleController::class, 'index']);
-Route::post('store-article', [ArticleController::class, 'store']);
-Route::get('/', [ArticleController::class, 'loadStart']);
-Route::get('/article/{id}', [ArticleController::class, 'loadPage']);
+// Articles
+
+    // Create
+    Route::get('/create-article', [ArticleController::class, 'index']);
+    Route::post('store-article', [ArticleController::class, 'store']);
+
+    // View
+    Route::get('/', [ArticleController::class, 'loadStart']);
+    Route::get('/article/{id}', [ArticleController::class, 'loadPage']);
+
+    // Update
+    Route::get('/edit-article/{id}', [ArticleController::class, 'editPage']);
+    Route::patch('/update-article/{id}', [ArticleController::class, 'updateArticle']);
+
+    // Delete
+    Route::get('/delete-article/{id}', [ArticleController::class, 'deletePage']);
+    Route::delete('delete-article',[ArticleController::class, 'delete']);

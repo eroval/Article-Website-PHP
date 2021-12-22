@@ -42,9 +42,9 @@
                     <h1><a href="{{ url('/') }}" style="text-decoration: none; color:black">Old Towner</a></h1>
                 </div>
                 <div class="nav-menu">
-                        <a href="{{url('/')}}">Newsfeed </a>
-                        <a href="#">Categories </a>
-                        <a href="#">Search </a>
+                        <a href="{{url('/')}}">Newsfeed</a>
+                        <a href="#">Tags</a>
+                        <a href="#">Search</a>
                 </div>
             </div>
         </div>

@@ -82,12 +82,14 @@
                                                     <div class="my_link">
                                                         <a href="{{url('/article/' . $element->id )}}" class="card-link">View</a>
                                                     </div>   
+                                                    @if (Auth::user() && Auth::user()->id == $element->author_id)
                                                     <div class="my_link">
-                                                        <a href="{{url('/article/' . $element->id )}}" class="card-link">Edit</a>
+                                                        <a href="{{url('/edit-article/' . $element->id )}}" class="card-link">Edit</a>
                                                     </div>
                                                     <div class="my_link">
-                                                        <a href="{{url('/article/' . $element->id )}}" class="card-link">Delete</a>
+                                                        <a href="{{url('/delete-article/' . $element->id )}}" class="card-link">Delete</a>
                                                     </div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -148,6 +150,7 @@
             </div>
         @endsection
 
+
         @if ($article?? '')
         @section('article-page')
         <div class="my_content" style="display: flex; min-height:1000px; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
@@ -157,7 +160,7 @@
                     @include('mylinebegin')
                     <br>
                     <div>
-                        <textarea readonly name="content" style="height: 750px; overflow-y: auto; resize:none;  width:100%; border:none; outline:none; " >{{$article['content']}}</textarea>
+                        <textarea readonly name="content" style="background-color: #fcfcfc; height: 750px; overflow-y: auto; resize:none;  width:100%; border:none; outline:none; " >{{$article['content']}}</textarea>
                     </div>
                     @include('mylinebegin')
                     <br>
@@ -169,6 +172,42 @@
                 </div>
             </div>
         </div>
+        @endsection
+        @endif
+
+        
+        @if ($article?? '')
+        @section('article-editor')
+            <div class="my_content" style="min-height: 1000px; display: flex; min-width:600px; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+                <div class="container-fluid">  
+                    <div class="card-body">
+                        <?php $myurl="/update-article/" . $article->id . ""; 
+                              //echo $myurl;
+                        ?>
+                        {{-- <form name="edit-article" id='edit-article' method="POST" action="{{ url(@csrf) }}"> --}}
+                        <form name="edit-article" method="POST" action="{{ url($myurl) }}">
+                            @method('PATCH')
+                            @csrf
+                            <div class="form-group">
+                                <label for="exampleHeadline">Headline</label>
+                                <input type="text" id="headline" name="headline" class="form-control" value="{{$article['headline']}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleTags">Tags</label>
+                                <input type="text" id="tags" name="tags" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleContent">Content</label>
+                                <textarea name="content" style="height: 750px; overflow-y: auto; resize:none;" class="form-control" >{{$article['content']}}</textarea>
+                            </div>  
+                            <div style="display: flex; justify-content: center; ">
+                            <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left:10px;">Update</button>
+                            </div>                     
+                        </form>
+                    </div>
+                </div>
+            </div>
         @endsection
         @endif
 
