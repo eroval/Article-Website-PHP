@@ -1,41 +1,36 @@
+<div class="container-fluid">
     @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @include('link-style')
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
-
                 .nav-menu a{
                     color: black;
                     text-decoration: none;
                     margin-left: 10px;
                 }
 
-                .user_reg a{
-                    color: white;
-                    text-decoration: none;
-                    font-size: 15px;
-                    display: inline-block;
-                    padding: 0px 10px;
-                    margin-right:10px;
-                }
-
-                .user_reg a:link{
-                    background-color: black;
-                    border-radius: 8px;
-                }
 
                 .logo{
                     font-family: 'Playfair Display', serif;
                     position: relative;
                     top: -10px;
+                    border-radius: 10px;
                 }
 
             </style>
 
             
             <div class="d-flex justify-content-between">
-                <div class='user_reg'>
+                <div class='my_link'>
                     @auth
-                        <a href="{{ url('/home') }}" >Home</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Log out</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                     @else
                         <a href="{{ route('login') }}">Log in</a>
                         @if (Route::has('register'))
@@ -44,14 +39,14 @@
                     @endauth
                 </div>
                 <div class="logo">
-                    <h1>Old Towner</h1>
+                    <h1><a href="{{ url('/') }}" style="text-decoration: none; color:black">Old Towner</a></h1>
                 </div>
                 <div class="nav-menu">
-                        <a href="#">Newsfeed </a>
-                        <a href="#">Categories </a>
-                        <a href="#">Search </a>
+                        <a href="{{url('/')}}">Newsfeed</a>
+                        <a href="#">Tags</a>
+                        <a href="{{url('/search-article')}}">Search</a>
                 </div>
             </div>
-            @include('myline')
         </div>
     @endif
+</div>

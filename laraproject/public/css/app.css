@@ -11286,3 +11286,12 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+html {
+  height: 100%;
+}
+
+.my_content {
+  box-shadow: 0px 0px 4px -2px #000000;
+  background-color: #fcfcfc;
+  flex-grow: 1;
+}

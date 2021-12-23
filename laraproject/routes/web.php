@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticleController;
+use App\Models\Article;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +17,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Articles
+
+    // Create
+    Route::get('/create-article/', [ArticleController::class, 'create']);
+    Route::post('store-article', [ArticleController::class, 'store']);
+
+    // View
+    Route::get('/', [ArticleController::class, 'loadStart']);
+    Route::get('/article/{id}', [ArticleController::class, 'loadPage']);
+
+    // Update
+    Route::get('/edit-article/{id}', [ArticleController::class, 'editPage']);
+    Route::patch('/update-article/{id}', [ArticleController::class, 'updateArticle']);
+
+    // Delete
+    Route::get('/confirm-delete-article/{id}', [ArticleController::class, 'deletePage']);
+    Route::delete('/delete-article/{id}',[ArticleController::class, 'delete']);
+
+    // Search
+    Route::get('/search-article/', [ArticleController::class, 'searchPage']);
+    Route::get('/search-result/', [ArticleController::class, 'search']);

@@ -3,7 +3,7 @@ WSL-LINUX
 -----------------
 for the 'sail up' shortcut:
 'nano ~/.bashrc' in WSL and create alias:
-       |alias sail='bash venod/bin/sail'|
+       |alias sail='bash vendor/bin/sail'|
 then save and run '. ~/.bashrc'.
 
 _________________
