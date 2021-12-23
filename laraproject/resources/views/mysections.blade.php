@@ -89,7 +89,7 @@
                                                         <a href="{{url('/edit-article/' . $element->id )}}" class="card-link">Edit</a>
                                                     </div>
                                                     <div class="my_link">
-                                                        <a href="{{url('/delete-article/' . $element->id )}}" class="card-link">Delete</a>
+                                                        <a href="{{url('/confirm-delete-article/' . $element->id )}}" class="card-link">Delete</a>
                                                     </div>
                                                     @endif
                                                 </div>
@@ -120,7 +120,6 @@
             <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">  
                     <div class="card-body">
-                        {{-- <form name="create-article" id='create-article' method="POST" action="{{ url(@csrf) }}"> --}}
                         <form name="create-article" id='create-article' method="POST" action="{{ url('store-article') }}">
                             @csrf
                             <div class="form-group">
@@ -135,8 +134,9 @@
                                 <label for="exampleContent">Content</label>
                                 <textarea name="content" style="height: 750px; overflow-y: auto; resize:none;" class="form-control" required=""></textarea>
                             </div>  
-                            <div style="display: flex; justify-content: center;">
-                            <button type="submit" class="btn btn-primary" style="margin-top: 30px;">Submit</button>
+                            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                                <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
                             </div>                     
                         </form>
                     </div>
@@ -188,11 +188,7 @@
             <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                 <div class="container-fluid">  
                     <div class="card-body">
-                        <?php $myurl="/update-article/" . $article->id . ""; 
-                              //echo $myurl;
-                        ?>
-                        {{-- <form name="edit-article" id='edit-article' method="POST" action="{{ url(@csrf) }}"> --}}
-                        <form name="edit-article" method="POST" action="{{ url($myurl) }}">
+                        <form name="edit-article" method="POST" action="{{ url('/update-article/' . $article->id) }}">
                             @method('PATCH')
                             @csrf
                             <div class="form-group">
@@ -207,12 +203,33 @@
                                 <label for="exampleContent">Content</label>
                                 <textarea name="content" style="height: 750px; overflow-y: auto; resize:none;" class="form-control" >{{$article['content']}}</textarea>
                             </div>  
-                            <div style="display: flex; justify-content: center; ">
-                            <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
-                            <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left:10px;">Update</button>
+                            <div style="display: flex; justify-content: center;  margin-top: 10px;">
+                                <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left:10px;">Update</button>
                             </div>                     
                         </form>
                     </div>
+                </div>
+            </div>
+        @endsection
+        @endif
+
+        
+        @if($article?? '')
+        @section('article-delete')
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+                <div class="container-fluid" style="display:flex; justify-content: center;" > 
+                    <div class="d-flex align-self-center">
+                        <form name="delete-article" method="POST" action="{{ url('/delete-article/' . $article->id) }}">
+                            @method('DELETE')
+                            @csrf
+                            <h1>Are you sure you want to delete the article?</h1>
+                            <div style="display: flex; justify-content: center;  margin-top: 10px;">
+                                <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left:10px;">Delete</button>
+                            </div>                     
+                        </form>
+                    </div> 
                 </div>
             </div>
         @endsection

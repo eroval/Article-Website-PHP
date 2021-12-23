@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Articles
 
     // Create
-    Route::get('/create-article', [ArticleController::class, 'index']);
+    Route::get('/create-article/', [ArticleController::class, 'index']);
     Route::post('store-article', [ArticleController::class, 'store']);
 
     // View
@@ -37,5 +37,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::patch('/update-article/{id}', [ArticleController::class, 'updateArticle']);
 
     // Delete
-    Route::get('/delete-article/{id}', [ArticleController::class, 'deletePage']);
-    Route::delete('delete-article',[ArticleController::class, 'delete']);
+    Route::get('/confirm-delete-article/{id}', [ArticleController::class, 'deletePage']);
+    Route::delete('/delete-article/{id}',[ArticleController::class, 'delete']);
+
+    // Search
+    Route::get('/search-article/', [ArticleController::class, 'search']);

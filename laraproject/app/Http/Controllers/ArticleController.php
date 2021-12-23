@@ -56,4 +56,21 @@ class ArticleController extends Controller
         }
         abort(404);
     }
+
+    public function deletePage($id){
+        $article = Article::findOrFail($id);
+        if(Auth::user() && Auth::user()->id==$article->author_id){
+            return view('delete-article', ['article'=>$article]);
+        }
+        abort(404);
+    }
+
+    public function delete($id){
+        $article = Article::findOrFail($id);
+        if(Auth::user() && Auth::user()->id==$article->author_id){
+            $article->delete();
+            return redirect('/');
+        }
+        abort(404);
+    }
 }
