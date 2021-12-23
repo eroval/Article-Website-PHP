@@ -44,7 +44,7 @@
                 <div class="nav-menu">
                         <a href="{{url('/')}}">Newsfeed</a>
                         <a href="#">Tags</a>
-                        <a href="#">Search</a>
+                        <a href="{{url('/search-article')}}">Search</a>
                 </div>
             </div>
         </div>

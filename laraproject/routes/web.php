@@ -41,4 +41,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::delete('/delete-article/{id}',[ArticleController::class, 'delete']);
 
     // Search
-    Route::get('/search-article/', [ArticleController::class, 'search']);
+    Route::get('/search-article/', [ArticleController::class, 'searchPage']);
+    Route::post('/search-result/', [ArticleController::class, 'search']);

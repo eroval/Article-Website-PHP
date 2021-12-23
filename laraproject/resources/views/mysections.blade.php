@@ -246,6 +246,37 @@
         @endsection
         @endif
 
+        @section('search')
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+                    <div class="container-fluid" style="display:flex; justify-content: center;" > 
+                        <div class="d-flex flex-fill align-self-center justify-content-center">
+                            <form name="search-article" method="POST" style="width:60%;" action="{{ url('/search-result')}}">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" id="search" name="search" class="form-control">
+                                </div>
+                                <div style="display: flex; justify-content: center;  margin-top: 10px;">
+                                    <a href="{{url('/')}}" class="btn btn-secondary" style="margin-top: 10px; margin-right:10px;">Cancel</a>
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-left:10px;">Search</button>
+                                </div>                     
+                            </form>
+                        </div> 
+                    </div>
+            </div>
+        @endsection
+
+        
+        
+        @section('search-error')
+            <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
+                <div class="container-fluid" style="display:flex; justify-content: center;" > 
+                    <div class="d-flex align-self-center">
+                        <h1>Nothing was found</h1>
+                    </div> 
+                </div>
+            </div>
+        @endsection
+
 
         @section('myfooter')
         <p style="margin-top: 15px; text-align:center; padding-bottom:15px;">Copyright: The Amazing (Just) Man</p>

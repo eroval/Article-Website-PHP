@@ -73,4 +73,21 @@ class ArticleController extends Controller
         }
         abort(403);
     }
+
+    public function searchPage(){
+        return view('search');
+    }
+
+    public function search(Request $req){
+        $res = $req['search'];
+        $query = Article::where('user', 'like', "%" . $res . "%")
+                          ->orWhere('headline', 'like', "%" . $res . "%");
+        
+        if(!$query->first()){
+            return view ('emptysearch');
+        }
+
+        $articles = $query->orderBy('created_at', 'DESC')->paginate(5);
+        return view('welcome', ['articles'=>$articles]);
+    }
 }
