@@ -10,11 +10,8 @@ use App\Models\User;
 
 class ArticleController extends Controller
 {
-    public function index(){
-        if(Auth::user()){
-            return view('create-article');
-        }
-        abort(403);
+    public function create(){
+        return view('create-article');
     }
 
     public function store(Request $req){
