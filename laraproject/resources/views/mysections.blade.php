@@ -161,7 +161,19 @@
         <div class="my_content" style="display: flex; height: 80%; font-family: 'Cormorant Garamond'; ">
             <div class="container-fluid">
                 <div class="card-body">
-                    <h2 class="card-title">{{$article['headline']}}</h2>
+                    <div class="d-flex justify-content-between">
+                        <h2 class="card-title">{{$article['headline']}}</h2>
+                        @if (Auth::user() && Auth::user()->id == $article->author_id)
+                            <div class="d-flex">
+                                <div class="my_link">
+                                    <a href="{{url('/edit-article/' . $article->id )}}" class="card-link">Edit</a>
+                                </div>
+                                <div class="my_link">
+                                    <a href="{{url('/confirm-delete-article/' . $article->id )}}" class="card-link">Delete</a>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                     @include('mylinebegin')
                     <br>
                     <div>
@@ -175,7 +187,6 @@
                     @include('mylinebeginshort')
                     <p style="margin-top:5px;">Created: {{$article['created_at']}}</p>
                     @include('mylinebeginshort')
-
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@ class ArticleController extends Controller
         if(Auth::user() && Auth::user()->id==$article->author_id){
             return view('editarticle', ['article'=>$article]);
         }
-        abort(404);
+        abort(403);
     }
 
     public function updateArticle(Request $req){
@@ -54,7 +54,7 @@ class ArticleController extends Controller
             }
             return redirect('edit-article/' . $article->id)->with('status', 'successfully updated');
         }
-        abort(404);
+        abort(403);
     }
 
     public function deletePage($id){
@@ -62,7 +62,7 @@ class ArticleController extends Controller
         if(Auth::user() && Auth::user()->id==$article->author_id){
             return view('delete-article', ['article'=>$article]);
         }
-        abort(404);
+        abort(403);
     }
 
     public function delete($id){
@@ -71,6 +71,6 @@ class ArticleController extends Controller
             $article->delete();
             return redirect('/');
         }
-        abort(404);
+        abort(403);
     }
 }
