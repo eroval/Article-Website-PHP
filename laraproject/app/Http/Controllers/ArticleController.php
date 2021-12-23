@@ -11,7 +11,10 @@ use App\Models\User;
 class ArticleController extends Controller
 {
     public function index(){
-        return view('create-article');
+        if(Auth::user()){
+            return view('create-article');
+        }
+        abort(403);
     }
 
     public function store(Request $req){
@@ -24,6 +27,7 @@ class ArticleController extends Controller
             $article->save();
             return redirect('create-article')->with('status','successfully added');
         }
+        abort(403);
     }
 
     public function loadStart(){
