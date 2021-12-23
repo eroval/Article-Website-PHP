@@ -250,8 +250,7 @@
             <div class="my_content" style="display: flex; width: 100%; height: 80%; font-family: 'Cormorant Garamond'; ">
                     <div class="container-fluid" style="display:flex; justify-content: center;" > 
                         <div class="d-flex flex-fill align-self-center justify-content-center">
-                            <form name="search-article" method="POST" style="width:60%;" action="{{ url('/search-result')}}">
-                                @csrf
+                            <form name="search-article" method="GET" style="width:60%;" action="{{ url('/search-result')}}">
                                 <div class="form-group">
                                     <input type="text" id="search" name="search" class="form-control">
                                 </div>

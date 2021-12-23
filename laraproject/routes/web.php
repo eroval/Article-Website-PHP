@@ -42,4 +42,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     // Search
     Route::get('/search-article/', [ArticleController::class, 'searchPage']);
-    Route::post('/search-result/', [ArticleController::class, 'search']);
+    Route::get('/search-result/', [ArticleController::class, 'search']);
