@@ -1,3 +1,4 @@
+My short documentation:
 _________________
 WSL-LINUX
 -----------------
@@ -14,19 +15,19 @@ sail up
 sail down
 sail down --rmi all [remove images]
 sail down -v        [remove volumes]
-sail artisan config:cache
+sail artisan config:cache -clear cache and configuration
 sail artisan migrate:<option>
 .................
 
 _________________
-node/sass:
+node/sass/vue:
 -----------------
 npm install
 npm run dev 
 sass --watch resources/sass:resources/css
 
 _________________
-package.json
+package.json - custom scripts
 -----------------
 'npm run mysass' shortcut:
 write ["mysass": "sass --watch resources/sass:resources/css"]
